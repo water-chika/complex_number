@@ -9,4 +9,41 @@ namespace complex_number {
     concept complex = is_complex<T>;
     template<class T>
     constexpr bool is_complex<std::complex<T>> = true;
+
+    template<class T>
+    concept complex_type =
+        requires (T t) {
+            real(t);
+            imag(t);
+        };
+
+    auto norm(const complex_type auto& c) {
+        return real(c) * real(c) + imag(c) * imag(c);
+    }
+
+    auto length_square(const std::integral auto& n) {
+        return n*n;
+    }
+    auto length_square(const std::floating_point auto& f) {
+        return f*f;
+    }
+    auto length_square(const complex_type auto& c) {
+        return norm(c);
+    }
 }
+
+template<class T>
+concept scalar = std::integral<T> || std::floating_point<T> || complex_number::complex_type<T>;
+
+template<complex_number::complex_type C>
+struct std::formatter<C, char> {
+    constexpr auto parse(auto& ctx) {
+        return ctx.end();
+    }
+
+    constexpr auto format(const C& c, auto& ctx) {
+        return ctx.out().out;
+    }
+};
+
+

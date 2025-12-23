@@ -31,41 +31,50 @@ namespace complex_number {
     template<class T>
     constexpr bool is_complex<r_t_complex_number<T>> = true;
 
-    auto real(const r_t_complex_number<auto>& c) {
+    template<typename T>
+    auto real(const r_t_complex_number<T>& c) {
         return c.radius() * cos(c.angle());
     }
-    auto image(const r_t_complex_number<auto>& c) {
+    template<typename T>
+    auto image(const r_t_complex_number<T>& c) {
         return c.radius() * sin(c.angle());
     }
-    auto radius(const r_t_complex_number<auto>& c) {
+    template<typename T>
+    auto radius(const r_t_complex_number<T>& c) {
         return c.radius();
     }
-    auto angle(const r_t_complex_number<auto>& c) {
+    template<typename T>
+    auto angle(const r_t_complex_number<T>& c) {
         return c.angle();
     }
 
-    auto operator+(const r_t_complex_number<auto>& lhs, const r_t_complex_number<auto>& rhs) {
+    template<typename T>
+    auto operator+(const r_t_complex_number<T>& lhs, const r_t_complex_number<T>& rhs) {
         auto r = real(lhs) + real(rhs);
         auto i = image(lhs) + image(rhs);
         return r_t_complex_number<typeof(r)>::from_real_image(r, i);
     }
-    auto operator-(const r_t_complex_number<auto>& lhs, const r_t_complex_number<auto>& rhs) {
+    template<typename T>
+    auto operator-(const r_t_complex_number<T>& lhs, const r_t_complex_number<T>& rhs) {
         auto r= real(lhs) - real(rhs);
         auto i= image(lhs) - image(rhs);
         return r_t_complex_number<typeof(r)>::from_real_image(r, i);
     }
-    auto operator*(const r_t_complex_number<auto>& lhs, const r_t_complex_number<auto>& rhs) {
+    template<typename T>
+    auto operator*(const r_t_complex_number<T>& lhs, const r_t_complex_number<T>& rhs) {
         auto r= radius(lhs)*radius(rhs);
         auto a= angle(lhs) + angle(rhs);
         return r_t_complex_number<typeof(r)>::from_radius_angle(r, a);
     }
-    auto operator/(const r_t_complex_number<auto>& lhs, const r_t_complex_number<auto>& rhs) {
+    template<typename T>
+    auto operator/(const r_t_complex_number<T>& lhs, const r_t_complex_number<T>& rhs) {
         auto r= radius(lhs) * radius(rhs);
         auto a= angle(lhs) - angle(rhs);
         return r_t_complex_number<typeof(r)>::from_radius_angle(r, a);
     }
 
-    auto& operator<<(std::ostream& out, const r_t_complex_number<auto>& c) {
+    template<typename T>
+    auto& operator<<(std::ostream& out, const r_t_complex_number<T>& c) {
         return out << radius(c) << "(e^" << angle(c) << "i)";
     }
 }
