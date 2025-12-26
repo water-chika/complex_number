@@ -30,6 +30,25 @@ namespace complex_number {
     auto length_square(const complex_type auto& c) {
         return norm(c);
     }
+
+    template<typename T>
+    struct to_complex_struct {
+        using type = T;
+    };
+    template<typename T>
+    using to_complex_t = typename to_complex_struct<T>::type;
+    template<std::integral T>
+    struct to_complex_struct<T> {
+        using type = std::complex<T>;
+    };
+    template<std::floating_point T>
+    struct to_complex_struct<T> {
+        using type = std::complex<T>;
+    };
+    template<complex_type T>
+    struct to_complex_struct<T> {
+        using type = T;
+    };
 }
 
 template<class T>
