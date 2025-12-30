@@ -1,6 +1,7 @@
 #pragma once
 
 #include <complex>
+#include <format>
 
 namespace complex_number {
     template<class T>

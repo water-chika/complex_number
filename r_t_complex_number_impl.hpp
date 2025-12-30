@@ -52,25 +52,25 @@ namespace complex_number {
     auto operator+(const r_t_complex_number<T>& lhs, const r_t_complex_number<T>& rhs) {
         auto r = real(lhs) + real(rhs);
         auto i = image(lhs) + image(rhs);
-        return r_t_complex_number<typeof(r)>::from_real_image(r, i);
+        return r_t_complex_number<decltype(r)>::from_real_image(r, i);
     }
     template<typename T>
     auto operator-(const r_t_complex_number<T>& lhs, const r_t_complex_number<T>& rhs) {
         auto r= real(lhs) - real(rhs);
         auto i= image(lhs) - image(rhs);
-        return r_t_complex_number<typeof(r)>::from_real_image(r, i);
+        return r_t_complex_number<decltype(r)>::from_real_image(r, i);
     }
     template<typename T>
     auto operator*(const r_t_complex_number<T>& lhs, const r_t_complex_number<T>& rhs) {
         auto r= radius(lhs)*radius(rhs);
         auto a= angle(lhs) + angle(rhs);
-        return r_t_complex_number<typeof(r)>::from_radius_angle(r, a);
+        return r_t_complex_number<decltype(r)>::from_radius_angle(r, a);
     }
     template<typename T>
     auto operator/(const r_t_complex_number<T>& lhs, const r_t_complex_number<T>& rhs) {
         auto r= radius(lhs) * radius(rhs);
         auto a= angle(lhs) - angle(rhs);
-        return r_t_complex_number<typeof(r)>::from_radius_angle(r, a);
+        return r_t_complex_number<decltype(r)>::from_radius_angle(r, a);
     }
 
     template<typename T>
