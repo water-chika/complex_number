@@ -2,6 +2,7 @@
 
 #include <complex>
 #include <format>
+#include <hip_helper.hpp>
 
 namespace complex_number {
     template<class T>
@@ -22,12 +23,15 @@ namespace complex_number {
         return real(c) * real(c) + imag(c) * imag(c);
     }
 
+    __device__ __host__
     auto length_square(const std::integral auto& n) {
         return n*n;
     }
+    __device__ __host__
     auto length_square(const std::floating_point auto& f) {
         return f*f;
     }
+    __device__ __host__
     auto length_square(const complex_type auto& c) {
         return norm(c);
     }

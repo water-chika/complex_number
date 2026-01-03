@@ -9,6 +9,8 @@ add_library(complex_number INTERFACE
 target_include_directories(complex_number INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 target_compile_features(complex_number INTERFACE cxx_std_20)
 
+target_link_libraries(complex_number INTERFACE hip_helper)
+
 add_executable(test_complex_number
     test_complex_number.cpp
 )
