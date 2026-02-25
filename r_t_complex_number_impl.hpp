@@ -8,8 +8,8 @@ namespace complex_number {
         r_t_complex_number(T r, T t) : m_r{r}, m_t{t} {}
         static r_t_complex_number from_real_image(T real, T image) {
             return r_t_complex_number{
-                sqrt(real*real+image*image),
-                atan2(image, real)
+                std::sqrt(real*real+image*image),
+                std::atan2(image, real)
             };
         }
         static r_t_complex_number from_radius_angle(T radius, T angle) {
